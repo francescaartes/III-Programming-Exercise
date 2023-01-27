@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="chezka"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-27 11:06:01 am"/>
+        <attribute name="created" value="Y2hlemthO0NIRVpLQTsyMDIzLTAxLTI2OzExOjA3OjUyIGFtOzIzOTM="/>
+        <attribute name="edited" value="Y2hlemthO0NIRVpLQTsyMDIzLTAxLTI3OzExOjA2OjAxIGFtOzM7MjQ5Nw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="bmi, weight, height" type="Real" array="False" size=""/>
+            <declare name="interpretation" type="String" array="False" size=""/>
+            <output expression="&quot;This program calculates your Body Mass Index (BMI).&quot;" newline="True"/>
+            <output expression="&quot;What is your weight in pounds?&quot;" newline="True"/>
+            <input variable="weight"/>
+            <output expression="&quot;What is your height in inches?&quot;" newline="True"/>
+            <input variable="height"/>
+            <call expression="bmiCalclulation(weight, height)"/>
+            <assign variable="bmi" expression="bmiCalclulation(weight, height)"/>
+            <call expression="bmiInterpretation(bmi)"/>
+            <assign variable="interpretation" expression="bmiInterpretation(bmi)"/>
+            <output expression="&quot;Your Body Mass Index is &quot; &amp; bmi &amp; &quot; - &quot; &amp; interpretation" newline="True"/>
+        </body>
+    </function>
+    <function name="bmiCalclulation" type="Real" variable="bmi">
+        <parameters>
+            <parameter name="weight" type="Real" array="False"/>
+            <parameter name="height" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="constant" type="Integer" array="False" size=""/>
+            <declare name="bmi" type="Real" array="False" size=""/>
+            <assign variable="constant" expression="703"/>
+            <assign variable="bmi" expression="weight * constant / (height^2)"/>
+        </body>
+    </function>
+    <function name="bmiInterpretation" type="String" variable="interpretation">
+        <parameters>
+            <parameter name="bmi" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="interpretation" type="String" array="False" size=""/>
+            <if expression="bmi &lt; 18.5">
+                <then>
+                    <assign variable="interpretation" expression="&quot;Underweight&quot;"/>
+                </then>
+                <else>
+                    <if expression="bmi &gt;= 18.5 and bmi &lt;= 24.9">
+                        <then>
+                            <assign variable="interpretation" expression="&quot;Normal&quot;"/>
+                        </then>
+                        <else>
+                            <if expression="bmi &gt;= 25 and bmi &lt;= 29.9">
+                                <then>
+                                    <assign variable="interpretation" expression="&quot;Overweight&quot;"/>
+                                </then>
+                                <else>
+                                    <if expression="bmi &gt;= 30">
+                                        <then>
+                                            <assign variable="interpretation" expression="&quot;Obese&quot;"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

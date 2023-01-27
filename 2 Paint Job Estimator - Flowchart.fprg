@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="chezka"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-01-27 11:21:24 am"/>
+        <attribute name="created" value="Y2hlemthO0NIRVpLQTsyMDIzLTAxLTI3OzExOjA3OjAzIGFtOzIzOTA="/>
+        <attribute name="edited" value="Y2hlemthO0NIRVpLQTsyMDIzLTAxLTI3OzExOjIxOjI0IGFtOzE7MjQ5Nw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="wallSpace, paintPrice, paintGallon, laborHours, paintCost, laborCharges, paintJobTotal" type="Real" array="False" size=""/>
+            <declare name="wallConstant, hourConstant, chargeConstant" type="Integer" array="False" size=""/>
+            <assign variable="wallConstant" expression="115"/>
+            <assign variable="hourConstant" expression="8"/>
+            <assign variable="chargeConstant" expression="20"/>
+            <output expression="&quot;This program is a Paint Job Estimator from Painting Company.&quot;" newline="True"/>
+            <output expression="&quot;How many square feet of wall space to be painted?&quot;" newline="True"/>
+            <input variable="wallSpace"/>
+            <output expression="&quot;How much is the paint per gallon?&quot;" newline="True"/>
+            <input variable="paintPrice"/>
+            <call expression="getPaintGallon(wallSpace, wallConstant)"/>
+            <assign variable="paintGallon" expression="getPaintGallon(wallSpace, wallConstant)"/>
+            <call expression="getLaborHours(wallSpace, wallConstant, hourConstant)"/>
+            <assign variable="laborHours" expression="getLaborHours(wallSpace, wallConstant, hourConstant)"/>
+            <call expression="getPaintCost(paintGallon, paintPrice)"/>
+            <assign variable="paintCost" expression="getPaintCost(paintGallon, paintPrice)"/>
+            <call expression="getLaborCharges(laborHours, chargeConstant)"/>
+            <assign variable="laborCharges" expression="getLaborCharges(laborHours, chargeConstant)"/>
+            <call expression="getPaintJobTotal(paintCost, laborCharges)"/>
+            <assign variable="paintJobTotal" expression="getPaintJobTotal(paintCost, laborCharges)"/>
+            <output expression="&quot;The paint job will cost the following: &quot;" newline="True"/>
+            <output expression="&quot;Number of gallons of paint: &quot; &amp; paintGallon" newline="True"/>
+            <output expression="&quot;Hours of labor: &quot; &amp; laborHours" newline="True"/>
+            <output expression="&quot;Cost of the paint: &quot; &amp; paintCost" newline="True"/>
+            <output expression="&quot;Labor charges: &quot; &amp; laborCharges" newline="True"/>
+            <output expression="&quot;Total cost of the paint job: &quot; &amp; paintJobTotal" newline="True"/>
+        </body>
+    </function>
+    <function name="getLaborCharges" type="Real" variable="laborCharges">
+        <parameters>
+            <parameter name="laborHours" type="Real" array="False"/>
+            <parameter name="chargeConstant" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="laborCharges" type="Real" array="False" size=""/>
+            <assign variable="laborCharges" expression="laborHours * chargeConstant"/>
+        </body>
+    </function>
+    <function name="getLaborHours" type="Real" variable="laborHours">
+        <parameters>
+            <parameter name="wallSpace" type="Real" array="False"/>
+            <parameter name="wallConstant" type="Integer" array="False"/>
+            <parameter name="hourConstant" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="laborHours" type="Real" array="False" size=""/>
+            <assign variable="laborHours" expression="(wallSpace / wallConstant) * hourConstant"/>
+        </body>
+    </function>
+    <function name="getPaintCost" type="Real" variable="paintCost">
+        <parameters>
+            <parameter name="paintGallon" type="Real" array="False"/>
+            <parameter name="paintPrice" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="paintCost" type="Real" array="False" size=""/>
+            <assign variable="paintCost" expression="paintGallon * paintPrice"/>
+        </body>
+    </function>
+    <function name="getPaintGallon" type="Real" variable="paintGallon">
+        <parameters>
+            <parameter name="wallSpace" type="Real" array="False"/>
+            <parameter name="wallConstant" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="paintGallon" type="Real" array="False" size=""/>
+            <assign variable="paintGallon" expression="wallSpace / wallConstant"/>
+        </body>
+    </function>
+    <function name="getPaintJobTotal" type="Real" variable="paintJobTotal">
+        <parameters>
+            <parameter name="paintCost" type="Real" array="False"/>
+            <parameter name="laborCharges" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="paintJobTotal" type="Real" array="False" size=""/>
+            <assign variable="paintJobTotal" expression="paintCost + laborCharges"/>
+        </body>
+    </function>
+</flowgorithm>
